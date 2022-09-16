@@ -2,6 +2,7 @@ from requests import get
 from bs4 import BeautifulSoup
 import pandas as pd
 import unicodedata, unidecode
+import re
 
 
 def get_game_suffix(date, team1, team2):
@@ -46,6 +47,7 @@ def create_last_name_part_of_suffix(potential_last_names):
 """
 def get_player_suffix(name):
     normalized_name = unidecode.unidecode(unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode("utf-8"))
+    normalized_name = re.sub('[^a-zA-Z\s]+', '', normalized_name)
     if normalized_name == 'Metta World Peace' :
         suffix = '/players/a/artesro01.html'
     else:
@@ -53,7 +55,7 @@ def get_player_suffix(name):
         if len(split_normalized_name) < 2:
             return None
         initial = normalized_name.split(' ')[1][0].lower()
-        all_names = name.split(' ')
+        all_names = normalized_name.split(' ')
         first_name_part = unidecode.unidecode(all_names[0][:2].lower())
         first_name = all_names[0]
         other_names = all_names[1:]
