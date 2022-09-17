@@ -49,6 +49,8 @@ def get_player_suffix(name):
     normalized_name = unidecode.unidecode(unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode("utf-8"))
     if normalized_name == 'Metta World Peace' :
         suffix = '/players/a/artesro01.html'
+    elif normalized_name == 'Clint Capela':
+        suffix = '/players/c/capelca01.html'
     else:
         strip_name = re.sub('[^a-zA-Z\s]+', '', normalized_name)
         split_normalized_name = strip_name.split(' ')
