@@ -10,8 +10,8 @@ except:
     from basketball_reference_scraper.lookup import lookup
 
 def get_stats(_name, stat_type='PER_GAME', playoffs=False, career=False, ask_matches = True):
-    name = lookup(_name, ask_matches)
-    suffix = get_player_suffix(name)
+    # name = lookup(_name, ask_matches)
+    suffix = get_player_suffix(_name)
     if suffix:
         suffix = suffix.replace('/', '%2F')
     else:
@@ -46,8 +46,8 @@ def get_stats(_name, stat_type='PER_GAME', playoffs=False, career=False, ask_mat
 
 
 def get_game_logs(_name, year, playoffs=False, ask_matches=True):
-    name = lookup(_name, ask_matches)
-    suffix = get_player_suffix(name).replace('/', '%2F').replace('.html', '')
+    # name = lookup(_name, ask_matches)
+    suffix = get_player_suffix(_name).replace('/', '%2F').replace('.html', '')
     if playoffs:
         selector = 'div_pgl_basic_playoffs'
     else:
@@ -127,3 +127,6 @@ def get_player_splits(_name, season_end_year, stat_type='PER_GAME', ask_matches=
                     return df
             else:
                 raise Exception('The "stat_type" you entered does not exist. The following options are: PER_GAME, SHOOTING, ADVANCED, TOTALS')
+
+def get_all_star(_name):
+
