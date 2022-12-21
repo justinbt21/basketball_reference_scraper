@@ -127,6 +127,3 @@ def get_player_splits(_name, season_end_year, stat_type='PER_GAME', ask_matches=
                     return df
             else:
                 raise Exception('The "stat_type" you entered does not exist. The following options are: PER_GAME, SHOOTING, ADVANCED, TOTALS')
-
-def get_all_star(_name):
-
